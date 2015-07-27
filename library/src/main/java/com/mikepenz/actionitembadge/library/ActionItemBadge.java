@@ -3,15 +3,16 @@ package com.mikepenz.actionitembadge.library;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mikepenz.actionitembadge.library.utils.BadgeDrawableBuilder;
 import com.mikepenz.actionitembadge.library.utils.BadgeStyle;
+import com.mikepenz.actionitembadge.library.utils.NumberUtils;
 import com.mikepenz.actionitembadge.library.utils.UIUtil;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.typeface.IIcon;
@@ -48,7 +49,7 @@ public class ActionItemBadge {
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, int badgeCount) {
-        update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), BadgeStyles.DARK_GREY.getStyle(), badgeCount);
+        update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), BadgeStyles.DARK_GREY.getStyle(), String.valueOf(badgeCount));
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, BadgeStyles style, int badgeCount) {
@@ -56,7 +57,7 @@ public class ActionItemBadge {
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, BadgeStyle style, int badgeCount) {
-        update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), style, badgeCount);
+        update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), style, String.valueOf(badgeCount));
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, int iconColor, int badgeCount) {
@@ -68,11 +69,11 @@ public class ActionItemBadge {
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, int iconColor, BadgeStyle style, int badgeCount) {
-        update(act, menu, new IconicsDrawable(act, icon).color(iconColor).actionBar(), style, badgeCount);
+        update(act, menu, new IconicsDrawable(act, icon).color(iconColor).actionBar(), style, String.valueOf(badgeCount));
     }
 
     public static void update(final Activity act, final MenuItem menu, Drawable icon, BadgeStyles style, int badgeCount) {
-        update(act, menu, icon, style.getStyle(), badgeCount);
+        update(act, menu, icon, style.getStyle(), String.valueOf(badgeCount));
     }
 
     /**
@@ -85,7 +86,7 @@ public class ActionItemBadge {
      * @param badgeCount
      *
      */
-    public static void update(final Activity activity,final MenuItem menu, Drawable icon, BadgeStyle style, int badgeCount) {
+    public static void update(final Activity activity,final MenuItem menu, Drawable icon, BadgeStyle style, String badgeCount) {
         if (menu == null) return;
 
         FrameLayout badge;
@@ -122,12 +123,11 @@ public class ActionItemBadge {
             badgeView.setTextColor(style.getTextColor());
         }
 
-        //Manage min value
-        if (badgeCount == Integer.MIN_VALUE) {
+        if (TextUtils.isEmpty(badgeCount)) {
             badgeView.setVisibility(View.GONE);
         } else {
             badgeView.setVisibility(View.VISIBLE);
-            badgeView.setText(String.valueOf(badgeCount));
+            badgeView.setText(badgeCount);
         }
 
         menu.setVisible(true);
@@ -145,7 +145,18 @@ public class ActionItemBadge {
      * @param badgeCount
      */
     public static void update(final MenuItem menu, Drawable icon, int badgeCount) {
-        update(null, menu, icon,(BadgeStyle) null, badgeCount);
+        update(null, menu, icon, null, String.valueOf(badgeCount));
+    }
+
+    /**
+     * update the given menu item with icon and badgeCount with big number format
+     *
+     * @param menu
+     * @param icon
+     * @param badgeCount
+     */
+    public static void updateWithLargeNumber(final MenuItem menu, Drawable icon, int badgeCount) {
+        update(null, menu, icon, null, NumberUtils.formatNumber(badgeCount));
     }
 
 
