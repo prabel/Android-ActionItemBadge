@@ -49,7 +49,11 @@ public class ActionItemBadge {
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, int badgeCount) {
+<<<<<<< HEAD
         update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), BadgeStyles.DARK_GREY.getStyle(), String.valueOf(badgeCount));
+=======
+        update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), BadgeStyles.DARK_GREY.getStyle(), badgeCount, false);
+>>>>>>> 9f5929867f2876302304e358ded48411572f515f
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, BadgeStyles style, int badgeCount) {
@@ -57,7 +61,11 @@ public class ActionItemBadge {
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, BadgeStyle style, int badgeCount) {
+<<<<<<< HEAD
         update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), style, String.valueOf(badgeCount));
+=======
+        update(act, menu, new IconicsDrawable(act, icon).color(Color.WHITE).actionBar(), style, badgeCount, false);
+>>>>>>> 9f5929867f2876302304e358ded48411572f515f
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, int iconColor, int badgeCount) {
@@ -69,11 +77,19 @@ public class ActionItemBadge {
     }
 
     public static void update(final Activity act, final MenuItem menu, IIcon icon, int iconColor, BadgeStyle style, int badgeCount) {
+<<<<<<< HEAD
         update(act, menu, new IconicsDrawable(act, icon).color(iconColor).actionBar(), style, String.valueOf(badgeCount));
     }
 
     public static void update(final Activity act, final MenuItem menu, Drawable icon, BadgeStyles style, int badgeCount) {
         update(act, menu, icon, style.getStyle(), String.valueOf(badgeCount));
+=======
+        update(act, menu, new IconicsDrawable(act, icon).color(iconColor).actionBar(), style, badgeCount, false);
+    }
+
+    public static void update(final Activity act, final MenuItem menu, Drawable icon, BadgeStyles style, int badgeCount) {
+        update(act, menu, icon, style.getStyle(), badgeCount, false);
+>>>>>>> 9f5929867f2876302304e358ded48411572f515f
     }
 
     /**
@@ -86,7 +102,11 @@ public class ActionItemBadge {
      * @param badgeCount
      *
      */
+<<<<<<< HEAD
     public static void update(final Activity activity,final MenuItem menu, Drawable icon, BadgeStyle style, String badgeCount) {
+=======
+    public static void update(final Activity activity,final MenuItem menu, Drawable icon, BadgeStyle style, int badgeCount, boolean withNumberFormat) {
+>>>>>>> 9f5929867f2876302304e358ded48411572f515f
         if (menu == null) return;
 
         FrameLayout badge;
@@ -127,7 +147,11 @@ public class ActionItemBadge {
             badgeView.setVisibility(View.GONE);
         } else {
             badgeView.setVisibility(View.VISIBLE);
+<<<<<<< HEAD
             badgeView.setText(badgeCount);
+=======
+            badgeView.setText(withNumberFormat ? NumberUtils.formatNumber(badgeCount) : String.valueOf(badgeCount));
+>>>>>>> 9f5929867f2876302304e358ded48411572f515f
         }
 
         menu.setVisible(true);
@@ -145,6 +169,7 @@ public class ActionItemBadge {
      * @param badgeCount
      */
     public static void update(final MenuItem menu, Drawable icon, int badgeCount) {
+<<<<<<< HEAD
         update(null, menu, icon, null, String.valueOf(badgeCount));
     }
 
@@ -157,6 +182,9 @@ public class ActionItemBadge {
      */
     public static void updateWithLargeNumber(final MenuItem menu, Drawable icon, int badgeCount) {
         update(null, menu, icon, null, NumberUtils.formatNumber(badgeCount));
+=======
+        update(null, menu, icon,(BadgeStyle) null, badgeCount, false);
+>>>>>>> 9f5929867f2876302304e358ded48411572f515f
     }
 
 
